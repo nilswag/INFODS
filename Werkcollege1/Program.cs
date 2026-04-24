@@ -77,5 +77,34 @@
             int portie = ZoekGrootstePortie(pizzas, 3);
             Console.WriteLine($"Grootste portie: {portie}");
         }
+        private static void Opdracht4()
+        {
+            static int alg(int[] arr)
+            {
+                int n = arr.Length;
+                int min = arr[0] < arr[n] ? arr[0] : arr[n];  // kleinste mogelijke waarde
+                int max = min == arr[0] ? arr[n] : arr[0];    // grootste mogelijke waarde
+
+                int k;
+                for (k = min; k <= max; k++)
+                {
+                    int i = 0;
+                    int j = n;
+                    while (i < j - 1)
+                    {
+                        int m = (i + j) / 2;
+                        if (arr[i] < k) i = m;
+                        if (arr[i] > k) j = m;
+                        if (arr[i] == k) break;
+                    }
+                }
+
+                return k;
+            }
+
+            int[] arr = [
+                
+            ];
+        }
     }
 }
