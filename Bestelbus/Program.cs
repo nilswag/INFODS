@@ -1,6 +1,4 @@
 ﻿
-using System.ComponentModel.DataAnnotations;
-
 static int Bestelbus(int r, int[] gewichten)
 {
     int Ritten(int n)
@@ -40,6 +38,22 @@ static int Bestelbus(int r, int[] gewichten)
     return i;
 }
 
-int r = 5;
-int[] weights = [ 7, 8, 10, 9, 1, 3, 5, 4, 2, 6 ];
-Console.WriteLine(Bestelbus(r, weights));
+string[] line = Console.ReadLine().Split();
+int n = Int32.Parse(line[0]);
+int r = Int32.Parse(line[1]);
+
+int[] arr = new int[n];
+
+int i = 0;
+while (i < n)
+{
+    line = Console.ReadLine().Split();
+    foreach (string str in line)
+    {
+        arr[i++] = int.Parse(str);
+        if (i == n) break;
+    }
+}
+    
+
+Console.WriteLine(Bestelbus(r, arr));
