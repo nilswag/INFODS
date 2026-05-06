@@ -1,12 +1,12 @@
 ﻿
-static int Bestelbus(int r, int[] gewichten)
+static long Bestelbus(long r, long[] gewichten)
 {
-    int Ritten(int n)
+    long Ritten(long n)
     {
-        int ritten = 0;
+        long ritten = 0;
 
-        int lading = 0;
-        foreach (int gewicht in gewichten)
+        long lading = 0;
+        foreach (long gewicht in gewichten)
         {
             if (gewicht > n) break;
             if (gewicht + lading >= n)
@@ -20,14 +20,14 @@ static int Bestelbus(int r, int[] gewichten)
         return ritten;
     }
 
-    int i = 0;
-    int j = gewichten.Sum() + 1;
+    long i = 0;
+    long j = gewichten.Sum() + 1;
 
     while (i < j - 1)
     {
-        int m = (i + j) / 2;
+        long m = (i + j) / 2;
 
-        int _r = Ritten(m);
+        long _r = Ritten(m);
 
         if (_r < r)
             j = m;
@@ -39,18 +39,18 @@ static int Bestelbus(int r, int[] gewichten)
 }
 
 string[] line = Console.ReadLine().Split();
-int n = Int32.Parse(line[0]);
-int r = Int32.Parse(line[1]);
+long n = long.Parse(line[0]);
+long r = long.Parse(line[1]);
 
-int[] arr = new int[n];
+long[] arr = new long[n];
 
-int i = 0;
+long i = 0;
 while (i < n)
 {
     line = Console.ReadLine().Split();
     foreach (string str in line)
     {
-        arr[i++] = int.Parse(str);
+        arr[i++] = long.Parse(str);
         if (i == n) break;
     }
 }
