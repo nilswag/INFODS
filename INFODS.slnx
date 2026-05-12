@@ -1,6 +1,7 @@
 <Solution>
   <Project Path="Bestelbus/Bestelbus.csproj" Id="5e523be1-84e2-4770-a478-1e3d62e23c14" />
   <Project Path="Collatz/Collatz.csproj" Id="8d507ff8-e9ec-4e6e-a883-8563430f0916" />
+  <Project Path="LifeOfGame/LifeOfGame.csproj" Id="ab700787-2c57-4483-a735-f8e558f59f5b" />
   <Project Path="Werkcollege1/Werkcollege1.csproj" />
   <Project Path="Werkcollege4/Werkcollege4.csproj" Id="2f50e84d-fb94-4d50-8050-00b4e525d66c" />
 </Solution>
