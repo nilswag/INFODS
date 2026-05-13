@@ -1,6 +1,4 @@
 ﻿
-using System.Security.Cryptography;
-
 static void printSet(HashSet<(long, long)> set, (long, long) origin)
 {
     for (long y = -2; y <= 2; y++)
