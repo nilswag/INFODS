@@ -1,43 +1,62 @@
 ﻿
+using System.Security.Cryptography;
+
 static void printSet(HashSet<(long, long)> set, (long, long) origin)
 {
-    for (long y = origin.Item2 - 4; y <= origin.Item2 + 4; y++)
+    for (long y = -2; y <= 2; y++)
     {
-        for (long x = origin.Item1 - 4; x <= origin.Item1 + 4; x++)
+        for (long x = -2; x <= 2; x++)
         {
-            char el = set.Contains((x, y)) ? '0' : '.';
-            Console.Write(el);
+            (long, long) pos = (origin.Item1 + x, origin.Item2 - y);
+            char c = set.Contains(pos) ? '0' : '.';
+            Console.Write(c);
         }
-        Console.Write('\n');
+        Console.WriteLine();
     }
 }
 
-static HashSet<(long, long)> iterate(HashSet<(long, long)> old)
+static HashSet<(long, long)> iterate(HashSet<(long, long)> oldSet)
 {
-    HashSet<(long, long)> gen = [];
-
-    long[] range = [2, 3];
-
-    foreach (var pos in old)
+    bool checkPos((long, long) pos)
     {
-        long neighbors = 0;
+        long[] range;
+        if (oldSet.Contains(pos))
+            range = [2, 3];
+        else
+            range = [3];
 
-        for (long i = -1; i <= 1; i++)
+        long n = 0;
+        for (long dy = -1; dy <= 1; dy++)
         {
-            for (long j = -1; j <= 1; j++)
+            for (long dx = -1; dx <= 1; dx++)
             {
-                // TODO van dood naar levend
-                (long, long) neighbor = (pos.Item1 + i, pos.Item2 + j);
-                if (pos != neighbor && old.Contains(neighbor))
-                    neighbors++;
+                long x = pos.Item1 + dx;
+                long y = pos.Item2 + dy;
+
+                if ((x, y) == pos) continue;
+                if (oldSet.Contains((x, y))) n++;
             }
         }
 
-        if (range.Contains(neighbors))
-            gen.Add(pos);
+        return range.Contains(n);
     }
 
-    return gen;
+    HashSet<(long, long)> newSet = [];
+    foreach (var p in oldSet)
+    {
+        for (long dy = -1; dy <= 1; dy++)
+        {
+            for (long dx = -1; dx <= 1; dx++)
+            {
+                long x = p.Item1 + dx;
+                long y = p.Item2 + dy;
+
+                if (checkPos((x, y))) newSet.Add((x, y));
+            }
+        }
+    }
+
+    return newSet;
 }
 
 HashSet<(long, long)> set = [];
@@ -59,7 +78,6 @@ for (long i = 0; i < r; i++)
             ));
 }
 
-printSet(set, origin);
 for (long i = 0; i < t; i++)
     set = iterate(set);
 printSet(set, origin);
