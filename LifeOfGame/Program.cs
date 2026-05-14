@@ -57,9 +57,14 @@ static HashSet<(long, long)> iterate(HashSet<(long, long)> oldSet)
     return newSet;
 }
 
+static string[] splitInput()
+{
+    return Console.ReadLine().Split([' '], StringSplitOptions.RemoveEmptyEntries);
+}
+
 HashSet<(long, long)> set = [];
 
-string[] line = Console.ReadLine().Split();
+string[] line = splitInput();
 long r = long.Parse(line[0]);
 long t = long.Parse(line[1]);
 
@@ -67,7 +72,7 @@ long t = long.Parse(line[1]);
 
 for (long i = 0; i < r; i++)
 {
-    line = Console.ReadLine().Split();
+    line = splitInput();
     long y = long.Parse(line[0]);
     for (long j = 1; j < line.Length; j++)
         set.Add((
@@ -77,5 +82,8 @@ for (long i = 0; i < r; i++)
 }
 
 for (long i = 0; i < t; i++)
+{
     set = iterate(set);
-printSet(set, origin);
+    printSet(set, origin);
+    Console.WriteLine();
+}
