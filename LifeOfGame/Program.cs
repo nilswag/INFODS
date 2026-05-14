@@ -84,6 +84,7 @@ for (long i = 0; i < r; i++)
 for (long i = 0; i < t; i++)
 {
     set = iterate(set);
+    Console.WriteLine(set.Count);
     printSet(set, origin);
     Console.WriteLine();
 }
